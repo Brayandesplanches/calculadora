@@ -1,19 +1,19 @@
-/* style.css */
-
 .calculator {
   width: 300px;
-  margin: 100px auto;
+  margin: 50px auto;
   border: 1px solid #ccc;
   border-radius: 5px;
   padding: 10px;
+  background-color: #f0f0f0;
 }
 
 #display {
   width: 95%;
   margin-bottom: 10px;
   padding: 10px;
-  font-size: 18px;
+  font-size: 1.5em;
   border: 1px solid #ccc;
+  border-radius: 3px;
 }
 
 .buttons {
@@ -24,7 +24,24 @@
 
 button {
   padding: 15px;
-  font-size: 18px;
+  font-size: 1.2em;
   border: 1px solid #ccc;
+  border-radius: 3px;
+  background-color: #e0e0e0;
   cursor: pointer;
+}
+
+.operator {
+  background-color: #f9a03f;
+  color: white;
+}
+
+.equal {
+  background-color: #4caf50;
+  color: white;
+}
+
+.clear {
+  background-color: #f44336;
+  color: white;
 }
