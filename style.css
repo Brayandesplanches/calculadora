@@ -31,7 +31,7 @@ body {
   padding: 20px;
   text-align: right;
   margin-bottom: 10px;
-  color: white;
+  color: rgb(228, 4, 4);
   min-height: 80px;
   display: flex;
   flex-direction: column;
