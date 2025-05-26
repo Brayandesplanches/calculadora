@@ -1,36 +1,849 @@
+primeiro
+index.html
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculadora</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Encontre Seu Emprego Ideal</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Estilos adicionais para o menu */
+        .menu-container {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .menu-btn {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 8px 12px;
+            color: #333;
+        }
+        
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            right: 0;
+            background-color: white;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            border-radius: 4px;
+        }
+        
+        .dropdown-menu a {
+            color: #333;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+        
+        .dropdown-menu a:hover {
+            background-color: #f1f1f1;
+        }
+        
+        .show {
+            display: block;
+        }
+        
+        .search-bar {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+    </style>
 </head>
 <body>
-    <div class="calculator">
-        <div class="display">
-            <div class="previous-operand" id="previous-operand"></div>
-            <div class="current-operand" id="current-operand">0</div>
+    <header>
+        <div class="container">
+            <h1>Empregos<span>Now</span></h1>
+            <a href="login.html" class="logout-btn"><i class="fas fa-sign-out-alt"></i> Sair</a>
+            <div class="search-bar">
+                <div class="menu-container">
+                    <button class="menu-btn" id="menu-btn"><i class="fas fa-bars"></i></button>
+                    <div class="dropdown-menu" id="dropdown-menu">
+                        <a href="curriculo.html"><i class="fas fa-file-alt"></i> Currículo</a>
+                        <a href="opcoes.html"><i class="fas fa-cog"></i> Opções</a>
+                        <a href="postagem.html"><i class="fas fa-plus-circle"></i> Postagem</a>
+                    </div>
+                </div>
+                <input type="text" id="search-input" placeholder="Digite cargo, empresa ou palavra-chave">
+                <input type="text" id="location-input" placeholder="Localização">
+                <button id="search-btn"><i class="fas fa-search"></i> Buscar</button>
+            </div>
         </div>
-        <button class="span-two" id="clear">AC</button>
-        <button id="delete">DEL</button>
-        <button data-operation>÷</button>
-        <button data-number>7</button>
-        <button data-number>8</button>
-        <button data-number>9</button>
-        <button data-operation>*</button>
-        <button data-number>4</button>
-        <button data-number>5</button>
-        <button data-number>6</button>
-        <button data-operation>-</button>
-        <button data-number>1</button>
-        <button data-number>2</button>
-        <button data-number>3</button>
-        <button data-operation>+</button>
-        <button data-number>0</button>
-        <button id="decimal">.</button>
-        <button class="span-two" id="equals">=</button>
-    </div>
+    </header>
+
+    <main class="container">
+        <aside class="filters">
+            <h2>Filtros</h2>
+            <div class="filter-group">
+                <h3>Tipo de Emprego</h3>
+                <label><input type="checkbox" class="job-type" value="CLT"> CLT</label>
+                <label><input type="checkbox" class="job-type" value="PJ"> PJ</label>
+                <label><input type="checkbox" class="job-type" value="Freelancer"> Freelancer</label>
+                <label><input type="checkbox" class="job-type" value="Estágio"> Estágio</label>
+            </div>
+            <div class="filter-group">
+                <h3>Área</h3>
+                <label><input type="checkbox" class="job-area" value="TI"> Tecnologia da Informação</label>
+                <label><input type="checkbox" class="job-area" value="Marketing"> Marketing</label>
+                <label><input type="checkbox" class="job-area" value="Vendas"> Vendas</label>
+                <label><input type="checkbox" class="job-area" value="Saúde"> Saúde</label>
+            </div>
+            <button id="apply-filters">Aplicar Filtros</button>
+        </aside>
+
+        <section class="job-listings">
+            <h2>Vagas Disponíveis</h2>
+            <div id="jobs-container">
+                <!-- Vagas serão carregadas aqui via JavaScript -->
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 EmpregosNow. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Script para o menu dropdown
+        document.getElementById('menu-btn').addEventListener('click', function() {
+            document.getElementById('dropdown-menu').classList.toggle('show');
+        });
+
+        // Fechar o menu se clicar fora dele
+        window.addEventListener('click', function(event) {
+            if (!event.target.matches('.menu-btn') && !event.target.matches('.menu-btn *')) {
+                var dropdowns = document.getElementsByClassName("dropdown-menu");
+                for (var i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            }
+        });
+    </script>
     <script src="script.js"></script>
+</body>
+</html>
+
+segundo
+loguin.html
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - EmpregosNow</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-header">
+            <h1>Empregos<span>Now</span></h1>
+            <p>Encontre seu emprego dos sonhos</p>
+        </div>
+        
+        <form id="login-form">
+            <div class="form-group">
+                <label for="email">E-mail</label>
+                <input type="email" id="email" placeholder="Insira seu e-mail">
+                <small class="error-message" id="email-error"></small>
+            </div>
+            
+            <div class="form-group">
+                <label for="password">Senha</label>
+                <input type="password" id="password" placeholder="Insira sua senha">
+                <small class="error-message" id="password-error"></small>
+            </div>
+            
+            <div class="form-options">
+                <label>
+                    <input type="checkbox" id="remember"> Lembrar de mim
+                </label>
+                <a href="#">Esqueci minha senha</a>
+            </div>
+            
+            <button type="submit" class="login-btn">Entrar</button>
+            
+            <div class="register-link">
+                <p>Não tem uma conta? <a href="#">Cadastre-se</a></p>
+            </div>
+        </form>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+terceiro
+postagem.html
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Postagens - EmpregoNow</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f5f7fa;
+      color: #333;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      padding: 20px;
+    }
+    h1 {
+      color: #2c3e50;
+      text-align: center;
+      margin-bottom: 25px;
+      font-weight: 700;
+    }
+    .content {
+      max-width: 900px;
+      margin: 0 auto;
+      width: 100%;
+    }
+    .postagem-card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      margin-bottom: 20px;
+      overflow: hidden;
+      transition: transform 0.2s ease;
+      cursor: default;
+    }
+    .postagem-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+    .vaga-header {
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .vaga-img {
+      width: 80px;
+      height: 80px;
+      border-radius: 12px;
+      object-fit: cover;
+      flex-shrink: 0;
+      border: 3px solid #2c3e50;
+    }
+    .vaga-info {
+      flex-grow: 1;
+    }
+    .vaga-info h3 {
+      margin-bottom: 6px;
+      color: #2c3e50;
+      font-weight: 700;
+      font-size: 1.2em;
+    }
+    .vaga-info p {
+      font-size: 0.95em;
+      color: #555;
+    }
+    .btn-add-post {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background-color: #2c3e50;
+      color: white;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      font-size: 36px;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 6px 15px rgba(44, 62, 80, 0.4);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: background-color 0.3s ease;
+      user-select: none;
+      z-index: 1000;
+    }
+    .btn-add-post:hover {
+      background-color: #1a2738;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Postagens - EmpregoNow</h1>
+  <main class="content" id="feed">
+    <!-- Postagens serão carregadas aqui -->
+  </main>
+
+  <button class="btn-add-post" title="Adicionar nova postagem" aria-label="Adicionar nova postagem">+</button>
+
+  <script>
+    // Vagas base para sorteio
+    const vagasBase = [
+      {
+        title: "Desenvolvedor Front-end React",
+        company: "Tech Solutions Inc.",
+        location: "São Paulo, SP",
+        description: "Buscamos desenvolvedor React com experiência em interfaces modernas e responsivas.",
+        imageUrl: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        title: "Analista de Marketing Digital",
+        company: "Digital Agency",
+        location: "Remoto",
+        description: "Especialista em Google Ads e SEO para criar campanhas eficientes.",
+        imageUrl: "https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        title: "Vendedor Externo",
+        company: "Comércio Ltda",
+        location: "Rio de Janeiro, RJ",
+        description: "Experiência em vendas externas e negociações no setor automotivo.",
+        imageUrl: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        title: "Enfermeiro Plantonista",
+        company: "Hospital Saúde Total",
+        location: "Belo Horizonte, MG",
+        description: "Vaga para enfermeiro com experiência em UTIs.",
+        imageUrl: "https://images.unsplash.com/photo-1505751172876-fa1923c5c528?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        title: "Estagiário em TI",
+        company: "Startup Inovação",
+        location: "Curitiba, PR",
+        description: "Estágio para estudantes de TI com conhecimento básico em programação.",
+        imageUrl: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80"
+      }
+    ];
+
+    // Função para criar HTML da vaga
+    function criarVagaHTML(vaga) {
+      return `
+        <article class="postagem-card" tabindex="0" aria-label="Vaga: ${vaga.title} em ${vaga.company}">
+          <div class="vaga-header">
+            <img class="vaga-img" src="${vaga.imageUrl}" alt="Imagem da vaga ${vaga.title}" />
+            <div class="vaga-info">
+              <h3>${vaga.title}</h3>
+              <p><strong>Empresa:</strong> ${vaga.company}</p>
+              <p><strong>Localização:</strong> ${vaga.location}</p>
+              <p>${vaga.description}</p>
+            </div>
+          </div>
+        </article>
+      `;
+    }
+
+    const feed = document.getElementById('feed');
+    const TOTAL_POSTS = 300;
+    let loadedPosts = 0;
+
+    function gerarLocalizacaoAleatoria() {
+      const cidades = [
+        "São Paulo, SP", "Rio de Janeiro, RJ", "Belo Horizonte, MG",
+        "Curitiba, PR", "Porto Alegre, RS", "Recife, PE",
+        "Fortaleza, CE", "Salvador, BA", "Brasília, DF", "Manaus, AM",
+        "Remoto"
+      ];
+      return cidades[Math.floor(Math.random() * cidades.length)];
+    }
+
+    function criarVagaAleatoria(id) {
+      // Pega uma vaga base aleatória
+      const base = vagasBase[Math.floor(Math.random() * vagasBase.length)];
+
+      // Gera título com id para parecer único
+      const title = `${base.title} #${id}`;
+
+      // Gera uma localização aleatória
+      const location = gerarLocalizacaoAleatoria();
+
+      // Mantém a empresa e descrição da vaga base
+      return {
+        title,
+        company: base.company,
+        location,
+        description: base.description,
+        imageUrl: base.imageUrl
+      };
+    }
+
+    function carregarPostagens(qtd = 15) {
+      for(let i = 0; i < qtd && loadedPosts < TOTAL_POSTS; i++) {
+        const vaga = criarVagaAleatoria(loadedPosts + 1);
+        feed.insertAdjacentHTML('beforeend', criarVagaHTML(vaga));
+        loadedPosts++;
+      }
+    }
+
+    // Inicialmente carrega 15 postagens
+    carregarPostagens();
+
+    // Carrega mais postagens ao rolar perto do final da página
+    window.addEventListener('scroll', () => {
+      if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 100) {
+        if (loadedPosts < TOTAL_POSTS) {
+          carregarPostagens(15);
+        }
+      }
+    });
+  </script>
+
+</body>
+</html>
+
+quarto
+opcoes.html
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Opções - EmpregoNow</title>
+  <style>
+    /* Reset básico */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background: #f5f7fa;
+      color: #333;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      background-color: #2c3e50; /* azul escuro */
+      color: white;
+      padding: 15px 30px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    }
+
+    .logo {
+      font-weight: bold;
+      font-size: 1.8rem;
+      letter-spacing: 2px;
+      user-select: none;
+    }
+
+    .profile {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      cursor: pointer;
+    }
+
+    .profile img {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid white;
+      transition: transform 0.3s ease;
+    }
+
+    .profile:hover img {
+      transform: scale(1.1);
+    }
+
+    main {
+      flex-grow: 1;
+      max-width: 900px;
+      margin: 30px auto;
+      background: white;
+      padding: 30px 40px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      color: #2c3e50;
+      margin-bottom: 20px;
+      border-bottom: 2px solid #2c3e50;
+      padding-bottom: 6px;
+      font-weight: 700;
+    }
+
+    section {
+      margin-bottom: 40px;
+    }
+
+    label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: #444;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    select,
+    textarea {
+      width: 100%;
+      padding: 10px 12px;
+      margin-bottom: 18px;
+      border: 1.8px solid #ccc;
+      border-radius: 8px;
+      font-size: 1em;
+      transition: border-color 0.3s ease;
+    }
+
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    input[type="tel"]:focus,
+    select:focus,
+    textarea:focus {
+      outline: none;
+      border-color: #2c3e50;
+      box-shadow: 0 0 6px rgba(44, 62, 80, 0.5);
+    }
+
+    .checkbox-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .checkbox-group label {
+      font-weight: 500;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    button.save-btn {
+      background-color: #2c3e50;
+      color: white;
+      border: none;
+      padding: 14px 25px;
+      font-weight: 700;
+      font-size: 1.1em;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      display: block;
+      margin: 0 auto;
+      width: 160px;
+    }
+
+    button.save-btn:hover {
+      background-color: #1a2738;
+    }
+
+    @media (max-width: 600px) {
+      main {
+        margin: 20px 15px;
+        padding: 25px 20px;
+      }
+
+      .profile img {
+        width: 36px;
+        height: 36px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">EmpregoNow</div>
+    <div class="profile" title="Perfil do Usuário">
+      <img src="https://i.pravatar.cc/150?img=10" alt="Foto do usuário" />
+      <span>João Silva</span>
+    </div>
+  </header>
+
+  <main>
+    <section id="info-pessoais">
+      <h2>Informações Pessoais</h2>
+      <form>
+        <label for="nome">Nome Completo</label>
+        <input type="text" id="nome" name="nome" placeholder="Seu nome completo" />
+
+        <label for="email">E-mail</label>
+        <input type="email" id="email" name="email" placeholder="seu@email.com" />
+
+        <label for="telefone">Telefone</label>
+        <input type="tel" id="telefone" name="telefone" placeholder="(00) 00000-0000" />
+
+        <label for="cidade">Cidade</label>
+        <input type="text" id="cidade" name="cidade" placeholder="Sua cidade" />
+      </form>
+    </section>
+
+    <section id="acessibilidade">
+      <h2>Acessibilidades</h2>
+      <form>
+        <div class="checkbox-group">
+          <label><input type="checkbox" name="acessibilidade" value="deficiencia-visual" /> Deficiência Visual</label>
+          <label><input type="checkbox" name="acessibilidade" value="deficiencia-auditiva" /> Deficiência Auditiva</label>
+          <label><input type="checkbox" name="acessibilidade" value="mobilidade-reduzida" /> Mobilidade Reduzida</label>
+          <label><input type="checkbox" name="acessibilidade" value="dificuldade-oral" /> Dificuldade Oral</label>
+        </div>
+      </form>
+    </section>
+
+    <section id="outras-configs">
+      <h2>Outras Configurações</h2>
+      <form>
+        <label for="preferencia-contato">Preferência de Contato</label>
+        <select id="preferencia-contato" name="preferencia-contato">
+          <option value="email">E-mail</option>
+          <option value="telefone">Telefone</option>
+          <option value="whatsapp">WhatsApp</option>
+        </select>
+
+        <label for="notificacoes">Notificações</label>
+        <select id="notificacoes" name="notificacoes">
+          <option value="todas">Todas</option>
+          <option value="apenas-importantes">Apenas Importantes</option>
+          <option value="nenhuma">Nenhuma</option>
+        </select>
+      </form>
+    </section>
+
+    <button class="save-btn" type="submit">Salvar</button>
+  </main>
+
+</body>
+</html>
+
+quinto
+curruculo.html
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Currículo</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #e0f0ff, #ffffff);
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Barra superior com fundo azul escuro */
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #2c3e50;
+      color: white;
+      padding: 10px 20px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .top-bar a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .menu-btn {
+      font-size: 24px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      color: white;
+    }
+
+    .menu-content {
+      display: none;
+      position: absolute;
+      top: 50px;
+      left: 20px;
+      background-color: white;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .menu-content a {
+      display: block;
+      padding: 12px 16px;
+      text-decoration: none;
+      color: #2c3e50;
+      font-weight: bold;
+      border-bottom: 1px solid #eee;
+    }
+
+    .menu-content a:hover {
+      background-color: #f0f8ff;
+    }
+
+    .bg-shape, .bg-shape2 {
+      position: absolute;
+      z-index: 0;
+    }
+
+    .bg-shape {
+      width: 300px;
+      height: 300px;
+      background: rgba(30, 144, 255, 0.1);
+      border-radius: 50%;
+      top: -100px;
+      left: -100px;
+    }
+
+    .bg-shape2 {
+      width: 400px;
+      height: 400px;
+      background: rgba(30, 144, 255, 0.08);
+      border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+      bottom: -120px;
+      right: -150px;
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      max-width: 800px;
+      margin: 60px auto;
+      background: white;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      color: #2c3e50;
+      text-align: center;
+    }
+
+    label {
+      display: block;
+      margin-top: 20px;
+      font-weight: bold;
+      color: #333;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 1em;
+    }
+
+    button {
+      margin-top: 30px;
+      background: #2c3e50;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    .voltar {
+      display: block;
+      text-align: center;
+      margin-top: 30px;
+      text-decoration: none;
+      color: #1e90ff;
+      font-weight: bold;
+    }
+
+    footer {
+      text-align: center;
+      color: #aaa;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+  <div class="top-bar">
+    <div>
+      <button class="menu-btn" onclick="toggleMenu()">☰</button>
+      <div class="menu-content" id="menu">
+        <a href="opcoes.html">Opções</a>
+        <a href="postagem.html">Postagem</a>
+      </div>
+    </div>
+    <a href="index.html">Voltar ⮕</a>
+  </div>
+
+  <div class="bg-shape"></div>
+  <div class="bg-shape2"></div>
+
+  <div class="container">
+    <h1>Preencher Currículo</h1>
+    <form>
+      <label for="nome">Nome:</label>
+      <input type="text" id="nome" name="nome">
+
+      <label for="telefone">Número:</label>
+      <input type="tel" id="telefone" name="telefone">
+
+      <label for="endereco">Endereço:</label>
+      <input type="text" id="endereco" name="endereco">
+
+      <label for="habilidades">Habilidades:</label>
+      <textarea id="habilidades" name="habilidades" rows="4" placeholder="Liste suas principais habilidades..."></textarea>
+
+      <label for="projetos">Projetos Realizados:</label>
+      <textarea id="projetos" name="projetos" rows="4" placeholder="Descreva seus principais projetos..."></textarea>
+
+      <label for="experiencias">Experiências Profissionais:</label>
+      <textarea id="experiencias" name="experiencias" rows="4" placeholder="Empresas, cargos e período..."></textarea>
+
+      <label for="formacao">Formação Acadêmica:</label>
+      <textarea id="formacao" name="formacao" rows="4" placeholder="Cursos, instituições e datas..."></textarea>
+
+      <label for="sobre">Sobre você:</label>
+      <textarea id="sobre" name="sobre" rows="4" placeholder="Fale um pouco sobre você..."></textarea>
+
+      <button type="submit">Salvar Currículo</button>
+    </form>
+    <a class="voltar" href="index.html">⬅️ Voltar para Início</a>
+  </div>
+
+  <footer>&copy;  2023 EmpregosNow. Todos os direitos reservados.</footer>
+
+  <script>
+    function toggleMenu() {
+      const menu = document.getElementById("menu");
+      menu.style.display = menu.style.display === "block" ? "none" : "block";
+    }
+
+    // Fecha o menu se clicar fora
+    window.onclick = function(event) {
+      const menu = document.getElementById("menu");
+      const button = document.querySelector(".menu-btn");
+      if (!menu.contains(event.target) && !button.contains(event.target)) {
+        menu.style.display = "none";
+      }
+    }
+  </script>
 </body>
 </html>
